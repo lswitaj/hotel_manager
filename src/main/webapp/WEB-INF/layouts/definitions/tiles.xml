@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout"
+		template="/WEB-INF/layouts/template/baseLayout.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/layouts/template/navigation.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/layouts/template/footer.jsp" />
+	</definition>
+
+
+	<definition name="boss" extends="baseLayout">
+		<put-attribute name="title" value="Boss's Control Panel" />
+		<put-attribute name="heading" value="Boss's Control Panel" />
+	</definition>
+
+	<definition name="boss.addEmployee" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Add new Employee to your hotel" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/boss.addEmployee.jsp" />
+	</definition>
+
+	<definition name="boss.changeSalary" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Change one's salary" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/boss.changeSalary.jsp" />
+	</definition>
+
+	<definition name="boss.showStatistics" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Follow incomes and outcomes" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/boss.showStatistics.jsp" />
+	</definition>
+
+	<definition name="boss.welcome" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Hi Dear Mr Boss, how are you?" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/boss.welcome.jsp" />
+	</definition>
+
+
+	<definition name="employee" extends="baseLayout">
+		<put-attribute name="title" value="Reservation contol system for employees" />
+		<put-attribute name="heading" value="Reservation contol system for employees" />
+	</definition>
+
+	<definition name="employee.changeReservation" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Change reservation details" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/employee.changeReservation.jsp" />
+	</definition>
+	
+	<definition name="employee.showHotel" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Follow reservation's state" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/employee.showHotel.jsp" />
+	</definition>
+	
+	<definition name="employee.welcome" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Welcome in next passionate day in our hotel! Have a nice day!" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/employee.welcome.jsp" />
+	</definition>
+
+
+	<definition name="user.changePassword" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Here you can change your password" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/user.changePassword.jsp" />
+	</definition>
+	
+	<definition name="user.myReservations" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Hier you have your all reservations" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/user.myReservations.jsp" />
+	</definition>
+	
+	<definition name="user.reservationSummary" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Check all the data and choose Submit" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/user.reservationSummary.jsp" />
+	</definition>
+	
+	<definition name="user.signIn" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Create a new account" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/user.signIn.jsp" />
+	</definition>
+	
+	<definition name="user.signInActivationCode" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="On your email should be activation code" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/user.signInActivationCode.jsp" />
+	</definition>
+	
+	<definition name="user.welcome" extends="baseLayout">
+		<put-attribute name="tagline"
+			value="Welcome on website of our hotel" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/user.welcome.jsp" />
+	</definition>
+	
+	<definition name="Sign up" extends="baseLayout">
+		<put-attribute name="title" value="Sign up" />
+		<put-attribute name="heading" value="Sign up" />
+		<put-attribute name="tagline"
+			value="Sign up to your account or sign in" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/user.welcome.jsp" />
+	</definition>
+	
+</tiles-definitions>
