@@ -36,21 +36,21 @@ public class InMemoryClientRepository implements ClientRepository {
 //		}
 	}
 
-	@Override
-	public void addClient(Client client) {
-		String SQL = "INSERT INTO Client"
-				+ "VALUES (:login, :password, :name, :surname, :phoneNumber, :email)";
-
-		Map<String, Object> params = new HashMap<>();
-		params.put("login", client.getLogin());
-		params.put("password", client.getPassword());
-		params.put("name", client.getName());
-		params.put("surname", client.getSurname());
-		params.put("phoneNumber", client.getPhoneNumber());
-		params.put("email", client.getEmail());
-
-		jdbcTemplate.update(SQL, params);
-	}
+//	@Override
+//	public void addClient(Client client) {
+//		String SQL = "INSERT INTO Client"
+//				+ "VALUES (:login, :password, :name, :surname, :phoneNumber, :email)";
+//
+//		Map<String, Object> params = new HashMap<>();
+//		params.put("login", client.getLogin());
+//		params.put("password", client.getPassword());
+//		params.put("name", client.getName());
+//		params.put("surname", client.getSurname());
+//		params.put("phoneNumber", client.getPhoneNumber());
+//		params.put("email", client.getEmail());
+//
+//		jdbcTemplate.update(SQL, params);
+//	}
 
 	private static final class ClientMapper implements RowMapper<Client> {
 		public Client mapRow(ResultSet rs, int rowNum) throws SQLException {

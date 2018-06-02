@@ -144,19 +144,21 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 //       return promoCodeInterceptor;
 //    }
 //    
-    @Bean(name = "validator")
-    public LocalValidatorFactoryBean validator() {
-       LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-       bean.setValidationMessageSource(messageSource());
-       return bean;
-    }
     
-    @Override
-    public Validator getValidator(){
-       return validator();
-    }
-    
-    /* TODO */
+//    /*todo*/
+//    @Bean(name = "validator")
+//    public LocalValidatorFactoryBean validator() {
+//       LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+//       bean.setValidationMessageSource(messageSource());
+//       return bean;
+//    }
+//    
+//    @Override
+//    public Validator getValidator(){
+//       return validator();
+//    }
+//    
+//    /* TODO */
 //    @Bean
 //    public ProductValidator productValidator () {
 //       Set<Validator> springValidators = new HashSet<>();
