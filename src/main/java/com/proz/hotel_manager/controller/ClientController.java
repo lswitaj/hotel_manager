@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.proz.hotel_manager.domain.Other;
@@ -22,14 +23,16 @@ public class ClientController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	@RequestMapping("/reservations/clientId")
-	public String listReservationsOfClient(Model model) {
-		//model.addAttribute("Reservations", ReservationService.getAllClientsReservations());
-		model.addAttribute("reservations", reservationService.getReservationsUnderClient("eltonjohn"));
+	/* "/reservations/login" */
+	@RequestMapping("/reservations/{clientId}")
+	public String listReservationsOfClient(Model model, @PathVariable("clientId") String clientId) {
+		model.addAttribute("login", clientId);
+		model.addAttribute("reservations", reservationService.getReservationsUnderClient(clientId));
 		
 		return "reservations";
 	}
 
+	/* "/period;firstDay=dd-mm-yyyy;lastDay=dd-mm-yyyy" */
 	@RequestMapping("/getFreeRoomsInPeriod/{period}")
 	public String getFreeRoomsInPeriod(Model model, @MatrixVariable(pathVar="period") Map<String, String> filterData) throws ParseException {
 		Date firstDay = other.getDataFromString(filterData.get("firstDay")); //new GregorianCalendar(2018, Calendar.MARCH, 20).getTime();

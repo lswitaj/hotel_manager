@@ -58,4 +58,9 @@ public class ReservationServiceImpl implements ReservationService {
 
 		return sumOfPayments;
 	}
+
+	@Override
+	public Reservation getReservationUnderId(int reservationId) {
+		return reservationRepository.getReservationUnderId(reservationId);
+	}
 }

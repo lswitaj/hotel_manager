@@ -19,43 +19,52 @@ public class InMemoryReservationRepository implements ReservationRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
-	
+
 	@Override
 	public List<Reservation> getAllReservations() {
 		Map<String, Object> params = new HashMap<String, Object>();
-		
-		List<Reservation> result = jdbcTemplate.query("SELECT * FROM Reservation",
-				params, new ReservationMapper());
-		
+
+		List<Reservation> result = jdbcTemplate.query("SELECT * FROM Reservation", params, new ReservationMapper());
+
 		return result;
 	}
-	
+
 	@Override
 	public List<Reservation> getReservationsUnderClient(String login) {
 		String SQL = "SELECT * FROM Reservation WHERE Client_login = :login";
 		Map<String, Object> params = new HashMap<String, Object>();
-		
+
 		params.put("login", login);
-		
+
 		return jdbcTemplate.query(SQL, params, new ReservationMapper());
 	}
-	
+
+	@Override
+	public Reservation getReservationUnderId(int id) {
+		String SQL = "SELECT * FROM Reservation WHERE reservationId = :id";
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("id", id);
+
+		return jdbcTemplate.queryForObject(SQL, params, new ReservationMapper());
+	}
+
 	private static final class ReservationMapper implements RowMapper<Reservation> {
 		public Reservation mapRow(ResultSet rs, int rownum) throws SQLException {
 			Reservation reservation = new Reservation();
 			reservation.setReservationId(rs.getInt("reservationId"));
 			reservation.setStatus(rs.getString("status"));
 			reservation.setCost(rs.getInt("cost"));
-			
+
 			java.util.Date firstDay = new java.util.Date(rs.getDate("firstDay").getTime());
 			java.util.Date lastDay = new java.util.Date(rs.getDate("lastDay").getTime());
 			reservation.setFirstDay(firstDay);
 			reservation.setLastDay(lastDay);
-			
+
 			reservation.setBoard(rs.getBoolean("board"));
 			reservation.setClientLogin(rs.getString("Client_login"));
 			reservation.setRoomId(rs.getInt("Room_roomNumber"));
-			
+
 			return reservation;
 		}
 	}

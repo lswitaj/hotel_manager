@@ -9,4 +9,6 @@ public interface ReservationRepository {
 	List<Reservation> getAllReservations();
 	
 	List<Reservation> getReservationsUnderClient(String login);
+
+	Reservation getReservationUnderId(int id);
 }
