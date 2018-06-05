@@ -9,10 +9,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.proz.hotel_manager.domain.Employee;
 import com.proz.hotel_manager.repository.EmployeeRepository;
 
+@Repository
 public class InMemoryEmployeeRepository implements EmployeeRepository {
 
 	@Autowired
@@ -31,7 +33,7 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 
 	@Override
 	public Employee getEmployeeByPesel(String employeePesel) {
-		String SQL = "SELECT * FROM employee WHERE pesel = :employeePesel";
+		String SQL = "SELECT * FROM employee WHERE pesel = 75483953623";//:employeePesel";
 		Map<String, Object> params = new HashMap<>();
 		params.put("pesel", employeePesel);
 
@@ -41,7 +43,7 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 		// throw new ClientNotFoundException(clientID);
 		// }
 	}
-
+	
 	private static final class EmployeeMapper implements RowMapper<Employee> {
 		public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Employee employee = new Employee();
@@ -56,5 +58,4 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 			return employee;
 		}
 	}
-
 }

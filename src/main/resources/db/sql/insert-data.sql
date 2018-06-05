@@ -32,33 +32,36 @@ INSERT INTO Client
 
 INSERT INTO Room (roomNumber, price, size)
   VALUES  (1, 120, 1);
-INSERT INTO Room
+INSERT INTO Room (roomNumber, price, size)
   VALUES  (2, 220, 2);
-INSERT INTO Room
+INSERT INTO Room (roomNumber, price, size)
   VALUES  (3, 230, 2);
-INSERT INTO Room
+INSERT INTO Room (roomNumber, price, size)
   VALUES  (4, 220, 2);
-INSERT INTO Room
+INSERT INTO Room (roomNumber, price, size)
   VALUES  (5, 320, 3);
-INSERT INTO Room
+INSERT INTO Room (roomNumber, price, size)
   VALUES  (6, 110, 1);
-INSERT INTO Room
+INSERT INTO Room (roomNumber, price, size)
   VALUES  (7, 120, 1);
-INSERT INTO Room
+INSERT INTO Room (roomNumber, price, size)
   VALUES  (8, 300, 2);
 
-
-INSERT INTO Reservation (status, cost, firstDay, lastDay, board, Client_login, Room_roomNumber)
-  VALUES  ('canceledClient', 280, '2018-03-24', '2018-03-26', false, 'marekelko', 1);
-INSERT INTO Reservation (status, cost, firstDay, lastDay, board, Client_login, Room_roomNumber)
-  VALUES  ('after', 280, '2018-03-24', '2018-03-26', false, 'marekelko', 2);
-INSERT INTO Reservation (status, cost, firstDay, lastDay, board, Client_login, Room_roomNumber)
-  VALUES  ('before', 500, '2018-06-21', '2018-06-26', true, 'elkowicz13', 3);
-INSERT INTO Reservation (status, cost, firstDay, lastDay, board, Client_login, Room_roomNumber)
-  VALUES  ('canceledSystem', 230, '2018-02-20', '2018-02-21', false, 'eltonjohn', 4);
-INSERT INTO Reservation (status, cost, firstDay, lastDay, board, Client_login, Room_roomNumber)
-  VALUES  ('canceledClient', 350, '2018-03-13', '2018-03-15', false, 'eltonjohn', 4);
-INSERT INTO Reservation (status, cost, firstDay, lastDay, board, Client_login, Room_roomNumber)
-  VALUES  ('before', 620, '2018-06-04', '2018-06-08', true, 'eltonjohn', 3);
-INSERT INTO Reservation (status, cost, firstDay, lastDay, board, Client_login, Room_roomNumber)
-  VALUES  ('during', 1400, '2018-05-25', '2018-06-02', true, 'mirek321', 2);
+INSERT INTO Reservation
+  VALUES  (1, 'canceledClient', 280, '2018-03-24', '2018-03-26', false, 'marekelko', 1);
+INSERT INTO Reservation
+  VALUES  (2, 'after', 280, '2018-03-24', '2018-03-26', false, 'marekelko', 2);
+INSERT INTO Reservation
+  VALUES  (3, 'before', 500, '2018-06-21', '2018-06-26', true, 'elkowicz13', 3);
+INSERT INTO Reservation
+  VALUES  (4, 'canceledSystem', 230, '2018-02-20', '2018-02-21', false, 'eltonjohn', 4);
+INSERT INTO Reservation
+  VALUES  (5, 'canceledClient', 350, '2018-03-13', '2018-03-15', false, 'eltonjohn', 4);
+INSERT INTO Reservation
+  VALUES  (6, 'before', 620, '2018-06-04', '2018-06-08', true, 'eltonjohn', 5);
+INSERT INTO Reservation
+  VALUES  (7, 'during', 1400, '2018-05-25', '2018-06-02', true, 'mirek321', 2);
+INSERT INTO Reservation
+  VALUES  (8, 'after', 230, '2018-02-20', '2018-02-21', false, 'eltonjohn', 7);
+INSERT INTO Reservation
+  VALUES  (9, 'before', 130, '2018-03-20', '2018-03-25', false, 'wpustyniityle', 8);

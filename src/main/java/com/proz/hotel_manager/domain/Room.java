@@ -1,96 +1,70 @@
 package com.proz.hotel_manager.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 public class Room implements Serializable {
 	private static final long serialVersionUID = 2343251781631753171L;
 
-	private String roomId;
-	private String floorNumber;
-	private String roomNumber;
-	private BigInteger size;
-	private BigInteger price;
+	private int roomNumber;
+	private int size;
+	private BigDecimal price;
 
 	public Room() {
 		super();
 	}
 
-	public Room(String roomId, String floorNumber, String roomNumber, BigInteger size, BigInteger price) {
-		this.roomId = roomId;
-		this.floorNumber = floorNumber;
+	public Room(int roomNumber, int size, BigDecimal price) {
+		super();
 		this.roomNumber = roomNumber;
 		this.size = size;
 		this.price = price;
 	}
 
-	/**
-	 * @return the roomId
-	 */
-	public String getRoomId() {
-		return roomId;
-	}
-
-	/**
-	 * @param roomId the roomId to set
-	 */
-	public void setRoomId(String roomId) {
-		this.roomId = roomId;
-	}
-
-	/**
-	 * @return the floorNumber
-	 */
-	public String getFloorNumber() {
-		return floorNumber;
-	}
-
-	/**
-	 * @param floorNumber the floorNumber to set
-	 */
-	public void setFloorNumber(String floorNumber) {
-		this.floorNumber = floorNumber;
-	}
-
-	/**
-	 * @return the roomNumber
-	 */
-	public String getRoomNumber() {
+	public int getRoomNumber() {
 		return roomNumber;
 	}
 
-	/**
-	 * @param roomNumber the roomNumber to set
-	 */
-	public void setRoomNumber(String roomNumber) {
+	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
 
-	/**
-	 * @return the size
-	 */
-	public BigInteger getSize() {
+	public int getSize() {
 		return size;
 	}
 
-	/**
-	 * @param size the size to set
-	 */
-	public void setSize(BigInteger size) {
+	public void setSize(int size) {
 		this.size = size;
 	}
 
-	/**
-	 * @return the price
-	 */
-	public BigInteger getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	/**
-	 * @param price the price to set
-	 */
-	public void setPrice(BigInteger price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Room other = (Room) obj;
+		if (roomNumber == other.roomNumber && size == other.size && price.equals(other.price))
+			return true;
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 29;
+		int result = 432121451;
+		return result + prime * roomNumber;
+	}
+	
+	
 }

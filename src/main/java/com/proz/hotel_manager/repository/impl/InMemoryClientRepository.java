@@ -10,27 +10,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.proz.hotel_manager.domain.Client;
 import com.proz.hotel_manager.repository.ClientRepository;
 
+@Repository
 public class InMemoryClientRepository implements ClientRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
-
-//	@Autowired
-//	private Client client;
 	
 	@Override
 	public Client getClientById(String clientID) {
-		
-		String SQL = "SELECT * FROM client WHERE login = :clientId";
+		String SQL = "SELECT * FROM client WHERE login = 'marekelko'"; //:clientId";
 		Map<String, Object> params = new HashMap<>();
 		params.put("login", clientID);
+		
+		return jdbcTemplate.queryForObject(SQL, params, new ClientMapper());
 
 		//try {
-			return jdbcTemplate.queryForObject(SQL, params, new ClientMapper());
+			//return jdbcTemplate.queryForObject(SQL, params, new ClientMapper());
 //		} catch (DataAccessException e) {
 //			throw new ClientNotFoundException(clientID);
 //		}

@@ -1,27 +1,28 @@
 package com.proz.hotel_manager.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.sql.Date;
+import java.util.Date;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Reservation implements Serializable {
 	private static final long serialVersionUID = 4678151792531716001L;
 
-	private BigInteger reservationId;
+	private int reservationId;
 	private String status;
-	private BigInteger cost;
+	private int cost;
 	private Date firstDay;
 	private Date lastDay;
-	private boolean board;					//wyzywienie
+	private boolean board;
 	private String clientLogin;
-	private String roomId;
-	
+	private int roomId;
+
 	public Reservation() {
 		super();
 	}
 
-	public Reservation(BigInteger reservationId, String status, BigInteger cost, Date firstDay, Date lastDay,
-			boolean board, String clientLogin, String roomId) {
+	public Reservation(int reservationId, String status, int cost, Date firstDay, Date lastDay, boolean board,
+			String clientLogin, int roomId) {
 		this.reservationId = reservationId;
 		this.status = status;
 		this.cost = cost;
@@ -32,117 +33,97 @@ public class Reservation implements Serializable {
 		this.roomId = roomId;
 	}
 
-	/**
-	 * @return the reservationId
-	 */
-	public BigInteger getReservationId() {
+	public int getReservationId() {
 		return reservationId;
 	}
 
-	/**
-	 * @param reservationId the reservationId to set
-	 */
-	public void setReservationId(BigInteger reservationId) {
+	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
 
-	/**
-	 * @return the status
-	 */
 	public String getStatus() {
 		return status;
 	}
 
-	/**
-	 * @param status the status to set
-	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	/**
-	 * @return the cost
-	 */
-	public BigInteger getCost() {
+	public int getCost() {
 		return cost;
 	}
 
-	/**
-	 * @param cost the cost to set
-	 */
-	public void setCost(BigInteger cost) {
+	public void setCost(int cost) {
 		this.cost = cost;
 	}
 
-	/**
-	 * @return the firstDay
-	 */
 	public Date getFirstDay() {
 		return firstDay;
 	}
 
-	/**
-	 * @param firstDay the firstDay to set
-	 */
 	public void setFirstDay(Date firstDay) {
 		this.firstDay = firstDay;
 	}
 
-	/**
-	 * @return the lastDay
-	 */
 	public Date getLastDay() {
 		return lastDay;
 	}
 
-	/**
-	 * @param lastDay the lastDay to set
-	 */
 	public void setLastDay(Date lastDay) {
 		this.lastDay = lastDay;
 	}
 
-	/**
-	 * @return the board
-	 */
 	public boolean isBoard() {
 		return board;
 	}
 
-	/**
-	 * @param board the board to set
-	 */
 	public void setBoard(boolean board) {
 		this.board = board;
 	}
 
-	/**
-	 * @return the clientLogin
-	 */
 	public String getClientLogin() {
 		return clientLogin;
 	}
 
-	/**
-	 * @param clientLogin the clientLogin to set
-	 */
 	public void setClientLogin(String clientLogin) {
 		this.clientLogin = clientLogin;
 	}
 
-	/**
-	 * @return the roomId
-	 */
-	public String getRoomId() {
+	public int getRoomId() {
 		return roomId;
 	}
 
-	/**
-	 * @param roomId the roomId to set
-	 */
-	public void setRoomId(String roomId) {
+	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
 
+	public boolean isPaid() {
+		Set<String> completedStatuses = new HashSet<String>();
+		completedStatuses.add("after");
+		completedStatuses.add("before");
+		completedStatuses.add("during");
 
+		if (completedStatuses.contains(this.getStatus().toLowerCase()))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isInPeriod(Date firstDay, Date lastDay) {
+		if (!this.isPaid())
+			return false;
+
+		/*
+		 * ciekawostka - funkcja, ktora zajela mi najdluzej, ok 4 h, bo uzywalem
+		 * przestarzalego konstruktora Date zamiast GregorianCalendar i nie moglem dojsc
+		 * do przyczyny problemu szukajac jej wszedzie oprocz tego gdzie powienienem, po
+		 * sprawdzeniu kazdej sekundy z debuggera w koncu sie udalo, wazne: epochconverter
+		 */
+		
+		if (this.getLastDay().compareTo(firstDay) <= 0 || this.getFirstDay().compareTo(lastDay) >= 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

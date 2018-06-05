@@ -1,44 +1,61 @@
 package com.proz.hotel_manager.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proz.hotel_manager.domain.Reservation;
+import com.proz.hotel_manager.domain.Room;
 import com.proz.hotel_manager.repository.ReservationRepository;
+import com.proz.hotel_manager.repository.RoomRepository;
 import com.proz.hotel_manager.service.ReservationService;
 
 @Service
-public class ReservationServiceImpl implements ReservationService{
+public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private ReservationRepository reservationRepository;
 
-	@Override
-	public List<Reservation> getAllClientsReservations() {
-		return reservationRepository.getAllClientsReservations();
-	}
-
-//	@Override
-//	public BigInteger sumIncomes() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Autowired
+	private RoomRepository roomRepository;
 
 	@Override
-	public Reservation getReservationById(int reservationId) {
-		return reservationRepository.getReservationById(reservationId);
+	public List<Reservation> getAllReservations() {
+		return reservationRepository.getAllReservations();
 	}
 
 	@Override
-	public void addReservation(Reservation reservation) {
-		reservationRepository.addReservation(reservation);
+	public List<Reservation> getReservationsUnderClient(String login) {
+		return reservationRepository.getReservationsUnderClient(login);
+	}
+
+	/*TODO dziala, testowane 10 razy*/
+	@Override
+	public List<Room> getFreeRoomsInPeriod(Date firstDay, Date lastDay) {
+		List<Room> freeRooms = roomRepository.getAllRooms();
+		List<Reservation> allReservations = reservationRepository.getAllReservations();
+
+		/* TODO exceptions lastday>firstday*/
+		for (Reservation reservation : allReservations) {
+			if (reservation.isInPeriod(firstDay, lastDay))
+				freeRooms.remove(roomRepository.getRoomById(reservation.getRoomId()));
+		}
+		/* TODO exceptions empty set*/
+		return freeRooms;
 	}
 
 	@Override
-	public List<Reservation> getReservationByUserId(String userId) {
-		return reservationRepository.getReservationByUserId(userId);
-	}
+	public int sumUpIncomes() {
+		int sumOfPayments = 0;
+		List<Reservation> allReservations = reservationRepository.getAllReservations();
 
+		for (Reservation reservation : allReservations) {
+			if (reservation.isPaid())
+				sumOfPayments = sumOfPayments + reservation.getCost();
+		}
+
+		return sumOfPayments;
+	}
 }

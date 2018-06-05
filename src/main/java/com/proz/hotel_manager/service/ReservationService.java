@@ -1,18 +1,18 @@
 package com.proz.hotel_manager.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.proz.hotel_manager.domain.Reservation;
+import com.proz.hotel_manager.domain.Room;
 
 public interface ReservationService {
-	
-	List<Reservation> getAllClientsReservations();
-	
-//	BigInteger sumIncomes();
-	
-	Reservation getReservationById(int reservationId);
 
-	List<Reservation> getReservationByUserId(String userId);
+	List<Reservation> getAllReservations();
 	
-	void addReservation(Reservation reservation);
+	List<Reservation> getReservationsUnderClient(String login);
+
+	List<Room> getFreeRoomsInPeriod(Date firstDay, Date lastDay);
+	
+	int sumUpIncomes();
 }

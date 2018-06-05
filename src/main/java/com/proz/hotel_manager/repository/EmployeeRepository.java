@@ -9,6 +9,8 @@ public interface EmployeeRepository {
 	List<Employee> getAllEmployees();
 	
 	Employee getEmployeeByPesel(String employeePesel);
+	
+//	int sumUpSalaries();
 
 //	void addEmployee(Employee employee);
 
