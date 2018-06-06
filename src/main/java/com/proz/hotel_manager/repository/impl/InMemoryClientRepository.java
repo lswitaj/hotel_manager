@@ -21,6 +21,7 @@ public class InMemoryClientRepository implements ClientRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
+	/*TODO*/
 	@Override
 	public Client getClientById(String clientID) {
 		String SQL = "SELECT * FROM client WHERE login = 'marekelko'"; //:clientId";

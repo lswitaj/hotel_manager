@@ -10,8 +10,7 @@ public interface EmployeeRepository {
 	
 	Employee getEmployeeByPesel(String employeePesel);
 	
-//	int sumUpSalaries();
+	void addEmployee(Employee employee);
 
-//	void addEmployee(Employee employee);
-
+	void updateEmployee(Employee employee);
 }

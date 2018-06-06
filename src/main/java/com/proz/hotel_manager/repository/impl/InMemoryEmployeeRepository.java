@@ -20,9 +20,6 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
-	// @Autowired
-	// private Employee employee;
-
 	@Override
 	public List<Employee> getAllEmployees() {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -31,9 +28,10 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 		return result;
 	}
 
+	/*unused, debuggers tool*/
 	@Override
 	public Employee getEmployeeByPesel(String employeePesel) {
-		String SQL = "SELECT * FROM employee WHERE pesel = 75483953623";//:employeePesel";
+		String SQL = "SELECT * FROM employee WHERE pesel = :pesel";//:employeePesel";
 		Map<String, Object> params = new HashMap<>();
 		params.put("pesel", employeePesel);
 
@@ -42,6 +40,37 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 		// } catch (DataAccessException e) {
 		// throw new ClientNotFoundException(clientID);
 		// }
+	}
+
+	@Override
+	public void addEmployee(Employee newEmployee) {
+		String SQL = "INSERT INTO Employee VALUES(:pesel, :password, :name, :surname, :position, :phoneNumber, :email, :salary)";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("pesel", newEmployee.getPesel());
+		params.put("password", newEmployee.getPassword());
+		params.put("name", newEmployee.getName());
+		params.put("surname", newEmployee.getSurname());
+		params.put("position", newEmployee.getPosition());
+		params.put("phoneNumber", newEmployee.getPhoneNumber());
+		params.put("email", newEmployee.getEmail());
+		params.put("salary", newEmployee.getSalary());
+		
+		jdbcTemplate.update(SQL, params);
+	}
+	
+	@Override
+	public void updateEmployee(Employee employee) {
+		String SQL = "UPDATE Employee "
+				+ "SET position = :newPosition, salary = :newSalary "
+				+ "WHERE PESEL = :pesel";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("pesel", employee.getPesel());
+		params.put("newPosition", employee.getPosition());
+		params.put("newSalary", employee.getSalary());
+		
+		jdbcTemplate.update(SQL, params);	
 	}
 	
 	private static final class EmployeeMapper implements RowMapper<Employee> {

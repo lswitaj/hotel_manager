@@ -27,4 +27,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		return sumOfSalaries;
 	}
+
+	@Override
+	public void addEmployee(Employee employee) {
+		employeeRepository.addEmployee(employee);
+	}
+
+	@Override
+	public void updateEmployee(Employee employee) {
+		employeeRepository.updateEmployee(employee);
+	}
+	
+	
 }
