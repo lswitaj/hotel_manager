@@ -38,5 +38,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeRepository.updateEmployee(employee);
 	}
 	
-	
+	@Override
+	public Employee getEmployeeByPesel(String employeeId) {
+		return employeeRepository.getEmployeeByPesel(employeeId);
+	}
 }

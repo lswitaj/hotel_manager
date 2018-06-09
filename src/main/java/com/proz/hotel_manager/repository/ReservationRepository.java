@@ -11,4 +11,6 @@ public interface ReservationRepository {
 	List<Reservation> getReservationsUnderClient(String login);
 
 	Reservation getReservationUnderId(int id);
+	
+	void updateReservation(Reservation reservation);
 }

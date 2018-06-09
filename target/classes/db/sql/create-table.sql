@@ -8,20 +8,20 @@ DROP TABLE Client IF EXISTS;
 
 CREATE TABLE Employee (
   PESEL VARCHAR(11) PRIMARY KEY,
-  password VARCHAR(15),
-  name VARCHAR(15),
-  surname VARCHAR(15),
-  position VARCHAR(15),
+  password VARCHAR(15) NOT NULL,
+  name VARCHAR(15) NOT NULL,
+  surname VARCHAR(15) NOT NULL,
+  position VARCHAR(15) NOT NULL,
   phoneNumber VARCHAR(9),
   email VARCHAR(45),
-  salary INTEGER DEFAULT 2000,
+  salary INTEGER DEFAULT 2000 NOT NULL,
 );
 
 CREATE TABLE Client (
   login VARCHAR(15) PRIMARY KEY,
-  password VARCHAR(15),
-  name VARCHAR(15),
-  surname VARCHAR(15),
+  password VARCHAR(15) NOT NULL,
+  name VARCHAR(15) NOT NULL,
+  surname VARCHAR(15) NOT NULL,
   phoneNumber VARCHAR(9),
   email VARCHAR(45),
 );
@@ -34,11 +34,11 @@ CREATE TABLE Room (
 
 CREATE TABLE Reservation (
   reservationId INTEGER PRIMARY KEY,
-  status VARCHAR(20),
-  cost INTEGER,
-  firstDay DATE,
-  lastDay DATE,
-  board BOOLEAN,
+  status VARCHAR(20) NOT NULL,
+  cost INTEGER NOT NULL,
+  firstDay DATE NOT NULL,
+  lastDay DATE NOT NULL,
+  board BOOLEAN DEFAULT 0,
   Client_login VARCHAR(15) FOREIGN KEY REFERENCES Client(login),
   Room_roomNumber INTEGER FOREIGN KEY REFERENCES Room(roomNumber),
 );

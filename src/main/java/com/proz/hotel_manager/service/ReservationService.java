@@ -15,6 +15,8 @@ public interface ReservationService {
 	List<Room> getFreeRoomsInPeriod(Date firstDay, Date lastDay);
 	
 	Reservation getReservationUnderId(int reservationId);
+
+	void updateReservation(Reservation reservation);
 	
 	int sumUpIncomes();
 }

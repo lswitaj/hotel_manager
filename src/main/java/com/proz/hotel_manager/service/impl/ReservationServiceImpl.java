@@ -63,4 +63,9 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation getReservationUnderId(int reservationId) {
 		return reservationRepository.getReservationUnderId(reservationId);
 	}
+
+	@Override
+	public void updateReservation(Reservation reservation) {
+		reservationRepository.updateReservation(reservation);
+	}
 }

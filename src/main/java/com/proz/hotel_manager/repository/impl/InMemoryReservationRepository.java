@@ -49,6 +49,22 @@ public class InMemoryReservationRepository implements ReservationRepository {
 		return jdbcTemplate.queryForObject(SQL, params, new ReservationMapper());
 	}
 
+
+	@Override
+	public void updateReservation(Reservation reservation) {
+		String SQL = "UPDATE Reservation "
+				+ "SET status = :newStatus, cost = :newCost, board = :newBoard "
+				+ "WHERE reservationId = 6";//:reservationId";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("reservationId", reservation.getReservationId());
+		params.put("newStatus", reservation.getStatus());
+		params.put("newBoard", reservation.isBoard());
+		params.put("newCost", reservation.getCost());
+
+		jdbcTemplate.update(SQL, params);
+	}
+	
 	private static final class ReservationMapper implements RowMapper<Reservation> {
 		public Reservation mapRow(ResultSet rs, int rownum) throws SQLException {
 			Reservation reservation = new Reservation();

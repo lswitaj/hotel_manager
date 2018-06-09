@@ -44,7 +44,8 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 
 	@Override
 	public void addEmployee(Employee newEmployee) {
-		String SQL = "INSERT INTO Employee VALUES(:pesel, :password, :name, :surname, :position, :phoneNumber, :email, :salary)";
+		String SQL = "INSERT INTO Employee "
+				+ "VALUES(:pesel, :password, :name, :surname, :position, :phoneNumber, :email, :salary)";
 		
 		Map<String, Object> params = new HashMap<>();
 		params.put("pesel", newEmployee.getPesel());
@@ -70,7 +71,7 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 		params.put("newPosition", employee.getPosition());
 		params.put("newSalary", employee.getSalary());
 		
-		jdbcTemplate.update(SQL, params);	
+		jdbcTemplate.update(SQL, params);
 	}
 	
 	private static final class EmployeeMapper implements RowMapper<Employee> {

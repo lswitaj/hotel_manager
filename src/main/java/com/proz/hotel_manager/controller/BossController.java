@@ -26,32 +26,24 @@ public class BossController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	@RequestMapping("/bossPanel")
+	@RequestMapping("/menu")
 	public String welcome(Model model) {
-		return "bossPanel";
+		return "boss.menu";
 	}
 	
-	@RequestMapping("/employeeAll")
+	@RequestMapping("/displayEmployees")
 	public String list(Model model) {
 		model.addAttribute("employees", employeeRepository.getAllEmployees());
 		
-		return "employees";
+		return "boss.displayEmployees";
 	}
-	
-	@RequestMapping("/employeeMonth")
-	public String listUnderPesel(Model model) {
-		//model.addAttribute("Reservations", ReservationService.getAllClientsReservations());
-		model.addAttribute("employeeOfTheMonth", employeeRepository.getEmployeeByPesel("655212375"));
-		
-		return "employeeOfTheMonth";
-	}
-	
+
 	@RequestMapping("/summary")
 	public String displaySummary(Model model) {
 		model.addAttribute("incomes", reservationService.sumUpIncomes());
 		model.addAttribute("outcomes", employeeService.sumUpSalaries());
 	
-		return "money";
+		return "boss.money";
 	}
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
@@ -59,27 +51,27 @@ public class BossController {
 		Employee newEmployee = new Employee();
 		model.addAttribute("newEmployee", newEmployee);
 		
-		return "addEmployee";
+		return "boss.addEmployee";
 	}
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 	public String addEmloyee(@ModelAttribute("newEmployee") Employee newEmployee) {
 		employeeService.addEmployee(newEmployee);
 		
-		return "redirect:/boss/employeeAll";
+		return "redirect:/boss/displayEmployees";
 	}
 
-	@RequestMapping(value = "/updateEmployee/{pesel}", method = RequestMethod.GET)
+	@RequestMapping(value = "/promoteEmployee/{pesel}", method = RequestMethod.GET)
 	public String updateEmloyee(Model model, @PathVariable("pesel") String employeeId) {
-		model.addAttribute("actualEmployee", employeeRepository.getEmployeeByPesel(employeeId));
+		model.addAttribute("actualEmployee", employeeService.getEmployeeByPesel(employeeId));
 		
-		return "updateEmployee";
+		return "boss.promoteEmployee";
 	}
 	
-	@RequestMapping(value = "/updateEmployee/{pesel}", method = RequestMethod.POST)
+	@RequestMapping(value = "/promoteEmployee/{pesel}", method = RequestMethod.POST)
 	public String updateEmloyee(@ModelAttribute("actualEmployee") Employee employee) {
 		employeeService.updateEmployee(employee);
 		
-		return "redirect:/boss/employeeAll";
+		return "redirect:/boss/displayEmployees/";
 	}
 }
