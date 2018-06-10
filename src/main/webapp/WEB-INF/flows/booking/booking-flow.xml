@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+         http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+	<var name="reservation"
+		class="com.proz.hotel_manager.domain.Reservation" />
+
+	<action-state id="makeReservation">
+		<evaluate
+			expression="reservationServiceImpl.getNewReservation()"
+			result="reservation" />
+		<transition to="choseDate" />
+	</action-state>
+
+	<view-state id="choseDate" view="client.choseDate.jsp"
+		model="reservation">
+		<transition on="chosenDate" to="choseRoom" />
+	</view-state>
+	
+	<view-state id="choseRoom" view="client.choseRoom.jsp"
+		model="reservation">
+		<transition on="chosenRoom" to="addRoom" />
+		<transition on="back" to="choseDate" />
+	</view-state>
+
+	<action-state id="addRoom">
+		<evaluate expression="roomServiceImpl.getRoomById(reservation.roomId)"
+			result="room" />
+		<transition to="payAndCollectData" />
+	</action-state>
+
+	<view-state id="payAndCollectData"
+		view="client.payAndCollectData.jsp" model="reservation">
+		<transition on="accepted" to="createReservation" />
+		<transition on="back" to="choseRoom" />
+	</view-state>
+
+	<action-state id="createReservation">
+		<transition to="thankCustomer" />
+	</action-state>
+
+	<view-state id="thankCustomer" view="client.thanks.jsp"
+		model="reservation">
+		<transition on="paid" to="endState" />
+	</view-state>
+
+	<end-state id="endState" />
+
+	<end-state id="cancelCheckout"
+		view="client.reservationCanceled.jsp" />
+
+	<global-transitions>
+		<transition on="cancel" to="cancelReservation" />
+	</global-transitions>
+</flow> 

@@ -58,15 +58,11 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/editReservation/id={id}", method = RequestMethod.POST)
-	public String updateReservation(@ModelAttribute("actualReservation") @Valid Reservation reservation,
+	public String updateReservation(@ModelAttribute("actualReservation") Reservation reservation,
 			@ModelAttribute("id") int id, BindingResult result) {
+		
 		reservation.setReservationId(id);
 		reservationService.updateReservation(reservation);
-
-		if(result.hasErrors()) {
-			return "employee.editReservation";
-		}
-		
 		return "redirect:/employee/chooseClient/";
 	}
 	

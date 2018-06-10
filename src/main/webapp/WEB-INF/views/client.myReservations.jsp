@@ -57,7 +57,7 @@
 		</div>
 
 		<p>
-			<a href="<spring:url value="/client/makeReservation"/>"
+			<a href="<spring:url value="/booking"/>"
 				class="btn btn-success pull-right"> Make a next reservation <span
 				class="glyphicon-chevron-right glyphicon" /></span>
 			</a>

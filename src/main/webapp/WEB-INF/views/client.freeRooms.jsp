@@ -12,7 +12,7 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Rooms</h1>
-				<p>All rooms free in chosen period of time</p>
+				<p>All rooms free in chosen period</p>
 			</div>
 		</div>
 	</section>

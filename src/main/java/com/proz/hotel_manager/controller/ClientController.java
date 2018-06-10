@@ -54,6 +54,12 @@ public class ClientController {
 		
 		return "client.freeRooms";
 	}
+
+	@RequestMapping(value = "/makeReservation")
+	public String makeReservation() {
+
+		return "client.choseDate";
+	}
 	
 	/* TODO */
 	@RequestMapping(value = "/signInClient", method = RequestMethod.GET)
@@ -63,7 +69,7 @@ public class ClientController {
 		
 		return "client.signIn";
 	}
-	
+
 	@RequestMapping(value = "/signInClient", method = RequestMethod.POST)
 	public String addEmloyee(@ModelAttribute("newClient") @Valid Client newClient, BindingResult result) {
 		clientService.addClient(newClient);
@@ -79,52 +85,4 @@ public class ClientController {
 	public void initialiseBinder(WebDataBinder binder) {
 	
 	}
-	
-//	@RequestMapping(value = "/Reservations/add", method = RequestMethod.GET)
-//	public String getAddNewReservationForm(Model model) {
-//	   Reservation newReservation = new Reservation();
-//	   model.addAttribute("newReservation", newReservation);
-//	   return "addReservation";
-//	}
-//	   
-//	@RequestMapping(value = "/Reservations/add", method = RequestMethod.POST)
-//	public String processAddNewReservationForm(@ModelAttribute("newReservation") @Valid Reservation newReservation, BindingResult result, HttpServletRequest request) {
-//		
-//		if(result.hasErrors()) {
-//			   return "addReservation";
-//		}
-//		
-//		String[] suppressedFields = result.getSuppressedFields();
-//		   if (suppressedFields.length > 0) {
-//		      throw new RuntimeException("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
-//		   }
-//		   
-//		   MultipartFile ReservationImage = newReservation.getReservationImage();
-//		   String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-//		         
-//		      if (ReservationImage!=null && !ReservationImage.isEmpty()) {
-//		          try {
-//		            ReservationImage.transferTo(new File(rootDirectory+"resources\\images\\"+ newReservation.getReservationId() + ".png"));
-//		          } catch (Exception e) {
-//		         throw new RuntimeException("Reservation Image saving failed", e);
-//		      }
-//		      }
-//
-//	
-//	   ReservationService.addReservation(newReservation);
-//	   return "redirect:/market/Reservations";
-//	}
-//	
-//	
-//	@ExceptionHandler(ReservationNotFoundException.class)
-//	public ModelAndView handleError(HttpServletRequest req, ReservationNotFoundException exception) {
-//	    ModelAndView mav = new ModelAndView();
-//	    mav.addObject("invalidReservationId", exception.getReservationId());
-//	    mav.addObject("exception", exception);
-//	    mav.addObject("url", req.getRequestURL()+"?"+req.getQueryString());
-//	    mav.setViewName("ReservationNotFound");
-//	    return mav;
-//	}
-//	
-
 }

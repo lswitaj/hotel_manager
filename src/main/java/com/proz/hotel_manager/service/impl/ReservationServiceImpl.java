@@ -68,4 +68,10 @@ public class ReservationServiceImpl implements ReservationService {
 	public void updateReservation(Reservation reservation) {
 		reservationRepository.updateReservation(reservation);
 	}
+
+	@Override
+	public Reservation getNewReservation() {
+		Reservation reservation = new Reservation();
+		return reservation;
+	}
 }

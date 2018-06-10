@@ -5,20 +5,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-
 public class Reservation implements Serializable {
 	private static final long serialVersionUID = 4678151792531716001L;
 
-	@Min(value=1, message="{Min.Reservation.reservationId.validation}")
-	@Digits(integer=5, fraction=0, message="{Digits.Reservation.reservationId.validation}")
 	private int reservationId;
 	
 	private String status;
 	
-	@Min(value=0, message="{Min.Reservation.cost.validation}")
-	@Digits(integer=5, fraction=0, message="{Digits.Reservation.cost.validation}")
 	private int cost;
 	
 	private Date firstDay;
@@ -29,8 +22,6 @@ public class Reservation implements Serializable {
 	
 	private String clientLogin;
 	
-	@Min(value=1, message="{Min.Room.roomNumber.validation}")
-	@Digits(integer=2, fraction=0, message="{Digits.Room.roomNumber.validation}")
 	private int roomId;
 
 	public Reservation() {

@@ -19,4 +19,6 @@ public interface ReservationService {
 	void updateReservation(Reservation reservation);
 	
 	int sumUpIncomes();
+	
+	Reservation getNewReservation();
 }
