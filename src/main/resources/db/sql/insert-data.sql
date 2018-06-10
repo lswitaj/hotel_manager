@@ -15,7 +15,6 @@ INSERT INTO Employee
 INSERT INTO Employee
   VALUES  ('76964280987', 'kochamDude', 'Wieslawa', 'Black', 'manager', '241555114', 'wieslawa@black.pl', 11000);
 
-
 INSERT INTO Client
   VALUES  ('marekelko', 'haslo1', 'Staszek', 'Wiosna', '534132652', 'siala@fs.cd');
 INSERT INTO Client

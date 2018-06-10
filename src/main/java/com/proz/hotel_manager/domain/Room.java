@@ -3,11 +3,35 @@ package com.proz.hotel_manager.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+
 public class Room implements Serializable {
 	private static final long serialVersionUID = 2343251781631753171L;
 
+//	@Pattern(regexp="P[1-9]+", message="{Pattern.Product.productId.validation}")
+//	@ProductId 
+//	private String productId;
+//	
+//	@Size(min=4, max=50, message="{Size.Product.name.validation}")
+//	private String name;
+//	
+//	@Min(value=0, message="{Min.Product.unitPrice.validation}")
+//	@Digits(integer=8, fraction=2, message="{Digits.Product.unitPrice.validation}")
+//	@NotNull(message= "{NotNull.Product.unitPrice.validation}")
+//	private BigDecimal unitPrice;
+
+//	@NotNull(groups={Room.class, Reservation.class, Client.class, Employee.class}, message="{NotNull.validation}")
+	
+	@Min(value=1, message="{Min.Room.roomNumber.validation}")
+	@Digits(integer=2, fraction=0, message="{Digits.Room.roomNumber.validation}")
 	private int roomNumber;
+	
+	@Min(value=1, message="{Min.Room.size.validation}")
+	@Digits(integer=1, fraction=0, message="{Digits.Room.size.validation}")
 	private int size;
+	
+	@Digits(integer=5, fraction=2, message="{Digits.Room.price.validation}")
 	private BigDecimal price;
 
 	public Room() {

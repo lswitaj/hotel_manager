@@ -2,14 +2,23 @@ package com.proz.hotel_manager.domain;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class Client implements Serializable {
 	private static final long serialVersionUID = 3678107792576131001L;
 
 	private String login;
+
+	@Size(min = 6, max = 15, message="{Size.Client.password.validation}")
 	private String password;
 	private String name;
 	private String surname;
+
+	@Pattern(regexp="\\d{9}", message="{Pattern.Client.phoneNumber.validation}")
 	private String phoneNumber;
+
+	@Pattern(regexp="[A-Za-z0-9+_.-]+@(.+)$", message="{Pattern.Client.email.validation}")
 	private String email;
 	
 	public Client() {

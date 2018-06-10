@@ -4,9 +4,14 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,12 +65,20 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/signInClient", method = RequestMethod.POST)
-	public String addEmloyee(@ModelAttribute("newClient") Client newClient) {
+	public String addEmloyee(@ModelAttribute("newClient") @Valid Client newClient, BindingResult result) {
 		clientService.addClient(newClient);
+		
+		if(result.hasErrors()) {
+			return "client.signIn";
+		}
 		
 		return "redirect:/welcome";
 	}
-
+	
+	@InitBinder
+	public void initialiseBinder(WebDataBinder binder) {
+	
+	}
 	
 //	@RequestMapping(value = "/Reservations/add", method = RequestMethod.GET)
 //	public String getAddNewReservationForm(Model model) {

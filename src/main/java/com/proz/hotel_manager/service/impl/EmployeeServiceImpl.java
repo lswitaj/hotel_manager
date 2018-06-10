@@ -42,4 +42,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee getEmployeeByPesel(String employeeId) {
 		return employeeRepository.getEmployeeByPesel(employeeId);
 	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		return employeeRepository.getAllEmployees();
+	}
 }

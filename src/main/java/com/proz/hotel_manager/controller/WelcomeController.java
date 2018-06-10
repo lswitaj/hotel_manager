@@ -4,15 +4,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.proz.hotel_manager.domain.Other;
+
 @Controller
 public class WelcomeController {
 
+	Other other = new Other();
+	
 	/* TODO separated greetings by roles */
 	@RequestMapping("/welcome")
 	public String welcome(Model model) {
-		model.addAttribute("greeting", "Welcome to Elka Hotel!");
-		model.addAttribute("tagline", "The only hotel where you can book the room for 7 semesters!");
-
-		return "welcome";
+		if(other.getRoleOfUser().equals("client"))
+			return "redirect:/client/myReservations/" + other.getLogin();
+		else if(other.getRoleOfUser().equals("employee"))
+			return "redirect:/employee/chooseClient/";
+		else if(other.getRoleOfUser().equals("manager"))
+			return "redirect:/boss/menu/";
+		else
+			return "redirect:/login";
 	}
 }

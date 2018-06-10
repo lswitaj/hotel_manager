@@ -14,7 +14,7 @@ CREATE TABLE Employee (
   position VARCHAR(15) NOT NULL,
   phoneNumber VARCHAR(9),
   email VARCHAR(45),
-  salary INTEGER DEFAULT 2000 NOT NULL,
+  salary DECIMAL DEFAULT 2000 NOT NULL,
 );
 
 CREATE TABLE Client (

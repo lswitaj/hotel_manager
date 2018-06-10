@@ -14,6 +14,10 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
+				<p>
+					<a href="<spring:url value="/logout"/>"
+						class="btn btn-info pull-right"> Logout </a>
+				</p>
 				<h1>Updating reservation</h1>
 				<p>Choose client to display its reservations</p>
 			</div>
@@ -42,7 +46,7 @@
 									value="Update" />
 							</div>
 						</div>
-						
+
 					</fieldset>
 				</form:form>
 			</div>

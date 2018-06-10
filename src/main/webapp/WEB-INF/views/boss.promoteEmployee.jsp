@@ -2,6 +2,8 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<form:errors path="*" cssClass="alert alert-danger" element="div"/>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -57,6 +59,7 @@
 							<div class="col-lg-2">
 								<form:input id="salary" path="salary" type="number"
 									class="form:input-large" />
+								<form:errors path="salary" cssClass="text-danger"/>
 							</div>
 						</div>
 

@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<form:errors path="*" cssClass="alert alert-danger" element="div"/> 
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -39,6 +41,8 @@
 						</p>
 						<p>price: ${actualReservation.cost} PLN</p>
 						<p>Room: ${actualReservation.roomId}</p>
+						<p>Board: ${actualReservation.board}</p>
+						<p>Status: ${actualReservation.status}</p>
 					</div>
 				</div>
 			</div>
@@ -49,11 +53,14 @@
 					<fieldset>
 						<legend>Change reservation parameters</legend>
 
+						<!--<form:input type="hidden" path="reservationId" value="reservationId" />-->
+
 						<div class="form-group">
 							<label class="control-label col-lg-2" for="newCost">Cost</label>
 							<div class="col-lg-2">
 								<form:input id="cost" path="cost" type="number"
 									class="form:input-large" />
+								<form:errors path="cost" cssClass="text-danger"/>
 							</div>
 						</div>
 

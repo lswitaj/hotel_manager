@@ -2,6 +2,8 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
 
+<form:errors path="*" cssClass="alert alert-danger" element="div"/>
+
 <html>
 <head>
 <meta http-equiv="Content-Type"	content="text/html; charset=ISO-8859-1">
@@ -28,6 +30,7 @@
 					<label class="control-label col-lg-2 col-lg-2" for="pesel">Employee pesel</label>
 					<div class="col-lg-10">
 						<form:input id="pesel" path="pesel" type="text" class="form:input-large" />
+						<form:errors path="pesel" cssClass="text-danger"/>
 					</div>
 				</div>
 
@@ -35,6 +38,7 @@
 					<label class="control-label col-lg-2 col-lg-2" for="password">Password</label>
 					<div class="col-lg-10">
 						<form:input id="password" path="password" type="password" class="form:input-large" />
+						<form:errors path="password" cssClass="text-danger"/>
 					</div>
 				</div>
 
@@ -42,6 +46,7 @@
 					<label class="control-label col-lg-2 col-lg-2" for="name">Name</label>
 					<div class="col-lg-10">
 						<form:input id="name" path="name" type="text" class="form:input-large" />
+						<form:errors path="name" cssClass="text-danger"/>
 					</div>
 				</div>
 
@@ -49,6 +54,7 @@
 					<label class="control-label col-lg-2 col-lg-2" for="surname">Surname</label>
 					<div class="col-lg-10">
 						<form:input id="surname" path="surname" type="text" class="form:input-large" />
+						<form:errors path="surname" cssClass="text-danger"/>
 					</div>
 				</div>
 
@@ -68,6 +74,7 @@
 					<label class="control-label col-lg-2 col-lg-2" for="phoneNumber">Telephone number</label>
 					<div class="col-lg-10">
 						<form:input id="phoneNumber" path="phoneNumber" type="tel" class="form:input-large" />
+						<form:errors path="phoneNumber" cssClass="text-danger"/>
 					</div>
 				</div>
 
@@ -75,6 +82,7 @@
 					<label class="control-label col-lg-2 col-lg-2" for="email">Email address</label>
 					<div class="col-lg-10">
 						<form:input id="email" path="email" type="email" class="form:input-large" />
+						<form:errors path="email" cssClass="text-danger"/>
 					</div>
 				</div>
 
@@ -82,6 +90,7 @@
 					<label class="control-label col-lg-2 col-lg-2" for="salary">Salary</label>
 					<div class="col-lg-10">
 						<form:input id="salary" path="salary" type="number" class="form:input-large" />
+						<form:errors path="salary" cssClass="text-danger"/>
 					</div>
 				</div>
 

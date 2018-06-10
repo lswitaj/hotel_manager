@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:useBean id="date" class="java.util.Date" />
 
@@ -15,6 +15,10 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
+				<p>
+					<a href="<spring:url value="/logout"/>"
+						class="btn btn-info pull-right"> Logout </a>
+				</p>
 				<h1>All your reservations</h1>
 				<p>Look at the history or visit us again!</p>
 			</div>
@@ -40,13 +44,11 @@
 					<tr>
 						<td>${reservation.reservationId}</td>
 						<td>${reservation.status}</td>
-						<td>${reservation.cost} PLN</td>
-						<td>							
-							<fmt:formatDate value="${reservation.firstDay}" pattern="dd MMM yyyy"/>
-						</td>
-						<td>							
-							<fmt:formatDate value="${reservation.lastDay}" pattern="dd MMM yyyy"/>
-						</td>
+						<td>${reservation.cost}PLN</td>
+						<td><fmt:formatDate value="${reservation.firstDay}"
+								pattern="dd MMM yyyy" /></td>
+						<td><fmt:formatDate value="${reservation.lastDay}"
+								pattern="dd MMM yyyy" /></td>
 						<td>${reservation.board}</td>
 						<td>${reservation.roomId}</td>
 					</tr>
@@ -56,8 +58,8 @@
 
 		<p>
 			<a href="<spring:url value="/client/makeReservation"/>"
-				class="btn btn-success pull-right">
-				Make a next reservation <span class="glyphicon-chevron-right glyphicon" /></span>
+				class="btn btn-success pull-right"> Make a next reservation <span
+				class="glyphicon-chevron-right glyphicon" /></span>
 			</a>
 		</p>
 

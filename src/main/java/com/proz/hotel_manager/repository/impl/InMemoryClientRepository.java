@@ -3,6 +3,7 @@ package com.proz.hotel_manager.repository.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 //import java.util.List;
 import java.util.Map;
 
@@ -24,9 +25,9 @@ public class InMemoryClientRepository implements ClientRepository {
 	/*TODO*/
 	@Override
 	public Client getClientById(String clientID) {
-		String SQL = "SELECT * FROM client WHERE login = 'marekelko'"; //:clientId";
+		String SQL = "SELECT * FROM client WHERE login = :clientId";
 		Map<String, Object> params = new HashMap<>();
-		params.put("login", clientID);
+		params.put("clientId", clientID);
 		
 		return jdbcTemplate.queryForObject(SQL, params, new ClientMapper());
 
@@ -53,6 +54,14 @@ public class InMemoryClientRepository implements ClientRepository {
 		jdbcTemplate.update(SQL, params);
 	}
 
+
+	@Override
+	public List<Client> getAllClients() {
+		String SQL = "SELECT * FROM client";
+		
+		return jdbcTemplate.query(SQL, new ClientMapper());
+	}
+	
 	private static final class ClientMapper implements RowMapper<Client> {
 		public Client mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Client client = new Client();

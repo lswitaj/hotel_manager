@@ -54,7 +54,7 @@ public class InMemoryReservationRepository implements ReservationRepository {
 	public void updateReservation(Reservation reservation) {
 		String SQL = "UPDATE Reservation "
 				+ "SET status = :newStatus, cost = :newCost, board = :newBoard "
-				+ "WHERE reservationId = 6";//:reservationId";
+				+ "WHERE reservationId = :reservationId";
 		
 		Map<String, Object> params = new HashMap<>();
 		params.put("reservationId", reservation.getReservationId());

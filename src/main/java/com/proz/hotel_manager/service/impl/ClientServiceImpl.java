@@ -1,5 +1,7 @@
 package com.proz.hotel_manager.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +19,10 @@ public class ClientServiceImpl implements ClientService {
 	public void addClient(Client client) {
 		clientRepository.addClient(client);
 	}
+
+	@Override
+	public List<Client> getAllClients() {
+		return clientRepository.getAllClients();
+	}
+
 }

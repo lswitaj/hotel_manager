@@ -1,12 +1,18 @@
 package com.proz.hotel_manager.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proz.hotel_manager.domain.Client;
 import com.proz.hotel_manager.domain.Reservation;
@@ -18,7 +24,7 @@ public class EmployeeController {
 
 	@Autowired
 	private ReservationService reservationService;
-	
+
 	/* "/reservations/login" */
 	@RequestMapping("/reservations/{clientId}")
 	public String listReservationsOfClient(Model model, @PathVariable("clientId") String clientId) {
@@ -43,18 +49,29 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/editReservation/id={id}", method = RequestMethod.GET)
-	public String updateReservation(Model model, @PathVariable("id") int reservationId) {
-		//Reservation reservation = reservationService.getReservationUnderId(reservationId);
-
+	public String updateReservation(Model model, @PathVariable("id") int reservationId,
+			RedirectAttributes redirectAttributes) {
 		model.addAttribute("actualReservation", reservationService.getReservationUnderId(reservationId));
-
+		redirectAttributes.addFlashAttribute("id", reservationId);
+		
 		return "employee.editReservation";
 	}
 
 	@RequestMapping(value = "/editReservation/id={id}", method = RequestMethod.POST)
-	public String updateReservation(@ModelAttribute("actualReservation") Reservation reservation) {
+	public String updateReservation(@ModelAttribute("actualReservation") @Valid Reservation reservation,
+			@ModelAttribute("id") int id, BindingResult result) {
+		reservation.setReservationId(id);
 		reservationService.updateReservation(reservation);
 
+		if(result.hasErrors()) {
+			return "employee.editReservation";
+		}
+		
 		return "redirect:/employee/chooseClient/";
+	}
+	
+	@InitBinder
+	public void initialiseBinder(WebDataBinder binder) {
+	
 	}
 }

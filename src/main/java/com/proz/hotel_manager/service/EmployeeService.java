@@ -1,6 +1,7 @@
 package com.proz.hotel_manager.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.proz.hotel_manager.domain.Employee;
 
@@ -13,4 +14,6 @@ public interface EmployeeService {
 	void updateEmployee(Employee employee);
 	
 	Employee getEmployeeByPesel(String employeeId);
+
+	List<Employee> getAllEmployees();
 }

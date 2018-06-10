@@ -1,8 +1,13 @@
 package com.proz.hotel_manager.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +42,7 @@ public class BossController {
 		
 		return "boss.displayEmployees";
 	}
-
+	
 	@RequestMapping("/summary")
 	public String displaySummary(Model model) {
 		model.addAttribute("incomes", reservationService.sumUpIncomes());
@@ -55,8 +60,12 @@ public class BossController {
 	}
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-	public String addEmloyee(@ModelAttribute("newEmployee") Employee newEmployee) {
+	public String addEmloyee(@ModelAttribute("newEmployee") @Valid Employee newEmployee, BindingResult result) {
 		employeeService.addEmployee(newEmployee);
+		
+		if(result.hasErrors()) {
+			return "boss.addEmployee";
+		}
 		
 		return "redirect:/boss/displayEmployees";
 	}
@@ -69,9 +78,18 @@ public class BossController {
 	}
 	
 	@RequestMapping(value = "/promoteEmployee/{pesel}", method = RequestMethod.POST)
-	public String updateEmloyee(@ModelAttribute("actualEmployee") Employee employee) {
+	public String updateEmloyee(@ModelAttribute("actualEmployee") @Valid Employee employee, BindingResult result) {
 		employeeService.updateEmployee(employee);
 		
+		if(result.hasErrors()) {
+			return "boss.promoteEmployee";
+		}
+		
 		return "redirect:/boss/displayEmployees/";
+	}
+	
+	@InitBinder
+	public void initialiseBinder(WebDataBinder binder) {
+	
 	}
 }

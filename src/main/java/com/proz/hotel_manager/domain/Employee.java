@@ -3,16 +3,31 @@ package com.proz.hotel_manager.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 7861077252925052601L;
 
+	@Pattern(regexp="\\d{11}", message="{Pattern.Employee.pesel.validation}")
 	private String pesel;
+	
+	@Size(min = 6, max = 15, message="{Size.Employee.password.validation}")
 	private String password;
 	private String name;
 	private String surname;
 	private String position;
+	
+	@Pattern(regexp="\\d{9}", message="{Pattern.Employee.phoneNumber.validation}")
 	private String phoneNumber;
+	
+	@Pattern(regexp="[A-Za-z0-9+_.-]+@(.+)$", message="{Pattern.Employee.email.validation}")
 	private String email;
+	
+	@Min(value=0, message="{Min.Employee.salary.validation}")
+	@Digits(integer=5, fraction=2, message="{Digits.Employee.salary.validation}")
 	private BigDecimal salary;
 	
 	public Employee() {
