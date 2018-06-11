@@ -62,5 +62,3 @@ INSERT INTO Reservation
   VALUES  (7, 'during', 1400, '2018-05-25', '2018-06-02', true, 'mirek321', 2);
 INSERT INTO Reservation
   VALUES  (8, 'after', 230, '2018-02-20', '2018-02-21', false, 'eltonjohn', 7);
-INSERT INTO Reservation
-  VALUES  (9, 'before', 130, '2018-03-20', '2018-03-25', false, 'wpustyniityle', 8);

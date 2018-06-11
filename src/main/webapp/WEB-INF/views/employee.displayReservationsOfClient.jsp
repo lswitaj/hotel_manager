@@ -59,8 +59,7 @@
 											or (reservation.status == 'during')}">
 								<p>
 									<a
-										href="<spring:url value="/employee/editReservation/id=${reservation.reservationId}"/>
-													"
+										href="<spring:url value="/employee/editReservation/id=${reservation.reservationId}"/>"
 										class="btn btn-info"> Edit <span
 										class="glyphicon-pencil glyphicon" /></span>
 									</a>

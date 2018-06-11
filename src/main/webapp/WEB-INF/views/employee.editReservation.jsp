@@ -17,7 +17,6 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Updating reservation</h1>
-				<p>Update reservation of id : ${reservation.reservationId}</p>
 			</div>
 		</div>
 	</section>
@@ -60,7 +59,6 @@
 							<div class="col-lg-2">
 								<form:input id="cost" path="cost" type="number"
 									class="form:input-large" />
-								<form:errors path="cost" cssClass="text-danger"/>
 							</div>
 						</div>
 

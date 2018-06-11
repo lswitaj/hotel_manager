@@ -1,24 +1,20 @@
 package com.proz.hotel_manager.domain;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-
 public class Reservation implements Serializable {
 	private static final long serialVersionUID = 4678151792531716001L;
 
-	@Min(value=1, message="{Min.Reservation.reservationId.validation}")
-	@Digits(integer=5, fraction=0, message="{Digits.Reservation.reservationId.validation}")
+	Other other = new Other();
+	
 	private int reservationId;
 	
 	private String status;
 	
-	@Min(value=0, message="{Min.Reservation.cost.validation}")
-	@Digits(integer=5, fraction=0, message="{Digits.Reservation.cost.validation}")
 	private int cost;
 	
 	private Date firstDay;
@@ -29,8 +25,6 @@ public class Reservation implements Serializable {
 	
 	private String clientLogin;
 	
-	@Min(value=1, message="{Min.Room.roomNumber.validation}")
-	@Digits(integer=2, fraction=0, message="{Digits.Room.roomNumber.validation}")
 	private int roomId;
 
 	public Reservation() {
@@ -80,6 +74,10 @@ public class Reservation implements Serializable {
 	public void setFirstDay(Date firstDay) {
 		this.firstDay = firstDay;
 	}
+	
+	public void setFirstDay(String firstDay) throws ParseException {
+		this.firstDay = other.getDataFromString(firstDay);
+	}
 
 	public Date getLastDay() {
 		return lastDay;
@@ -89,6 +87,10 @@ public class Reservation implements Serializable {
 		this.lastDay = lastDay;
 	}
 
+	public void setLastDay(String lastDay) throws ParseException {
+		this.lastDay = other.getDataFromString(lastDay);
+	}
+	
 	public boolean isBoard() {
 		return board;
 	}

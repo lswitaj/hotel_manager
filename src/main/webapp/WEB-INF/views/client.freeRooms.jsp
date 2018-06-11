@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
 
 <html>
 <head>
@@ -12,7 +13,7 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Rooms</h1>
-				<p>All rooms free in chosen period of time</p>
+				<p>All rooms free in chosen period</p>
 			</div>
 		</div>
 	</section>
@@ -26,11 +27,15 @@
 							<h3>${room.roomNumber}</h3>
 							<h2>price: ${room.price} PLN</h2>
 							<p>size: ${room.size}</p>
+							<p> <a href="<spring:url value="/client/pay/room=${room.roomNumber}/first=${dates.firstDay}/last=${dates.lastDay}"/>" class="btn btn-warning">
+    							Next <span class="glyphicon-chevron-right glyphicon"/></span>  
+							</a> </p>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
+		<input type="hidden" name="reservation" value="${reservation}" />
 	</section>
 </body>
 </html>

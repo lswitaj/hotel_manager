@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class Other {
-
+	
 	/* data format DD-MM-YYYY */
 	public Date getDataFromString(String dateString) throws ParseException {
 		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");

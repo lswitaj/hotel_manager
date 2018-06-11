@@ -15,7 +15,7 @@ public class WelcomeController {
 	@RequestMapping("/welcome")
 	public String welcome(Model model) {
 		if(other.getRoleOfUser().equals("client"))
-			return "redirect:/client/myReservations/" + other.getLogin();
+			return "redirect:/client/myReservations/";
 		else if(other.getRoleOfUser().equals("employee"))
 			return "redirect:/employee/chooseClient/";
 		else if(other.getRoleOfUser().equals("manager"))
