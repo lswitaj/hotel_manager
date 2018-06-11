@@ -8,11 +8,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.proz.hotel_manager.domain.Client;
 import com.proz.hotel_manager.domain.Employee;
 import com.proz.hotel_manager.service.ClientService;
 import com.proz.hotel_manager.service.EmployeeService;
+
 
 @Configuration
 @EnableWebSecurity
@@ -24,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public EmployeeService employeeService;
 
+	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	/* TODO add new users */
 	@Autowired
@@ -49,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginPage("/login")
 			.usernameParameter("userId")
 			.passwordParameter("password");
+			//.passwordParameter(passwordEncoder.encode("password"));
 		
 		httpSecurity.formLogin()
 			.defaultSuccessUrl("/welcome")
