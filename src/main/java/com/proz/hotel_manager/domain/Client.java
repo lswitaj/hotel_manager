@@ -25,6 +25,14 @@ public class Client implements Serializable {
 		super();
 	}
 
+	/**
+	 * @param login
+	 * @param password
+	 * @param name
+	 * @param surname
+	 * @param phoneNumber
+	 * @param email
+	 */
 	public Client(String login, String password, String name, String surname, String phoneNumber, String email) {
 		super();
 		this.login = login;

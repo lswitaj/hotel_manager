@@ -22,7 +22,6 @@ public class InMemoryClientRepository implements ClientRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
-	/*TODO*/
 	@Override
 	public Client getClientById(String clientID) {
 		String SQL = "SELECT * FROM client WHERE login = :clientId";
@@ -30,12 +29,6 @@ public class InMemoryClientRepository implements ClientRepository {
 		params.put("clientId", clientID);
 		
 		return jdbcTemplate.queryForObject(SQL, params, new ClientMapper());
-
-		//try {
-			//return jdbcTemplate.queryForObject(SQL, params, new ClientMapper());
-//		} catch (DataAccessException e) {
-//			throw new ClientNotFoundException(clientID);
-//		}
 	}
 
 	@Override
@@ -53,7 +46,6 @@ public class InMemoryClientRepository implements ClientRepository {
 
 		jdbcTemplate.update(SQL, params);
 	}
-
 
 	@Override
 	public List<Client> getAllClients() {

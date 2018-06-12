@@ -28,18 +28,13 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
 		return result;
 	}
 
-	/*unused, debuggers tool*/
 	@Override
 	public Employee getEmployeeByPesel(String employeePesel) {
-		String SQL = "SELECT * FROM employee WHERE pesel = :pesel";//:employeePesel";
+		String SQL = "SELECT * FROM employee WHERE pesel = :pesel";
 		Map<String, Object> params = new HashMap<>();
 		params.put("pesel", employeePesel);
 
-		// try {
 		return jdbcTemplate.queryForObject(SQL, params, new EmployeeMapper());
-		// } catch (DataAccessException e) {
-		// throw new ClientNotFoundException(clientID);
-		// }
 	}
 
 	@Override

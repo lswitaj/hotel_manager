@@ -11,7 +11,10 @@ public class WelcomeController {
 
 	Other other = new Other();
 	
-	/* TODO separated greetings by roles */
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/welcome")
 	public String welcome(Model model) {
 		if(other.getRoleOfUser().equals("client"))

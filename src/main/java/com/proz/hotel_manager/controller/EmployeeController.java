@@ -24,6 +24,11 @@ public class EmployeeController {
 	private ReservationService reservationService;
 
 	/* "/reservations/login" */
+	/**
+	 * @param model
+	 * @param clientId
+	 * @return
+	 */
 	@RequestMapping("/reservations/{clientId}")
 	public String listReservationsOfClient(Model model, @PathVariable("clientId") String clientId) {
 		model.addAttribute("login", clientId);
@@ -32,6 +37,10 @@ public class EmployeeController {
 		return "employee.displayReservationsOfClient";
 	}
 
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/chooseClient", method = RequestMethod.GET)
 	public String chooseClientToDisplayReservations(Model model) {
 		Client client = new Client();
@@ -40,12 +49,22 @@ public class EmployeeController {
 		return "employee.chooseClient";
 	}
 
+	/**
+	 * @param login
+	 * @return
+	 */
 	@RequestMapping(value = "/chooseClient", method = RequestMethod.POST)
 	public String chooseClientToDisplayReservations(@ModelAttribute("login") String login) {
 
 		return "redirect:/employee/reservations/" + login;
 	}
 
+	/**
+	 * @param model
+	 * @param reservationId
+	 * @param redirectAttributes
+	 * @return
+	 */
 	@RequestMapping(value = "/editReservation/id={id}", method = RequestMethod.GET)
 	public String updateReservation(Model model, @PathVariable("id") int reservationId,
 			RedirectAttributes redirectAttributes) {
@@ -55,6 +74,12 @@ public class EmployeeController {
 		return "employee.editReservation";
 	}
 
+	/**
+	 * @param reservation
+	 * @param id
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "/editReservation/id={id}", method = RequestMethod.POST)
 	public String updateReservation(@ModelAttribute("actualReservation") Reservation reservation,
 			@ModelAttribute("id") int id, BindingResult result) {
@@ -64,6 +89,9 @@ public class EmployeeController {
 		return "redirect:/employee/chooseClient/";
 	}
 	
+	/**
+	 * @param binder
+	 */
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 	

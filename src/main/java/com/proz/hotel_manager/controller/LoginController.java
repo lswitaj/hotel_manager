@@ -11,6 +11,9 @@ public class LoginController {
 
 	Other other = new Other();
 	
+	/**
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		

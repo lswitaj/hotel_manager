@@ -31,18 +31,16 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.getReservationsUnderClient(login);
 	}
 
-	/*TODO dziala, testowane 10 razy*/
 	@Override
 	public List<Room> getFreeRoomsInPeriod(Date firstDay, Date lastDay) {
 		List<Room> freeRooms = roomRepository.getAllRooms();
 		List<Reservation> allReservations = reservationRepository.getAllReservations();
 
-		/* TODO exceptions lastday>firstday*/
 		for (Reservation reservation : allReservations) {
 			if (reservation.isInPeriod(firstDay, lastDay))
 				freeRooms.remove(roomRepository.getRoomById(reservation.getRoomId()));
 		}
-		/* TODO exceptions empty set*/
+
 		return freeRooms;
 	}
 

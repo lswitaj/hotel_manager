@@ -29,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
-	/* TODO add new users */
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 		List<Client> clients = clientService.getAllClients();

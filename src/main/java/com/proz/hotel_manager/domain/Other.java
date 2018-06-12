@@ -11,12 +11,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class Other {
 	
 	/* data format DD-MM-YYYY */
+	/**
+	 * @param dateString
+	 * @return
+	 * @throws ParseException
+	 */
 	public Date getDataFromString(String dateString) throws ParseException {
 		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
 		return formatter.parse(dateString);
 	}
 
+	/**
+	 * @return
+	 */
 	public String getRoleOfUser() {
 		Object[] list = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray();
 
@@ -27,6 +35,9 @@ public class Other {
 		return onlyRole.toLowerCase().substring(5);
 	}
 
+	/**
+	 * @return
+	 */
 	public String getLogin() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentLogin = authentication.getName();

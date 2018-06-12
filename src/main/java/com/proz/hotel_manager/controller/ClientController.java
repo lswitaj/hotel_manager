@@ -31,12 +31,18 @@ public class ClientController {
 	@Autowired
 	private RoomService roomService;
 
+	/**
+	 * @param binder
+	 */
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 
 	}
 
-	/* TODO change it to simply /myReservations without client */
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/myReservations")
 	public String listReservationsOfClient(Model model) {
 		model.addAttribute("login", other.getLogin());
@@ -46,6 +52,10 @@ public class ClientController {
 	}
 
 	/* Making reservations */
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/booking", method = RequestMethod.GET)
 	public String choseDate(Model model) {
 		DateHandler dateHandler = new DateHandler();
@@ -54,6 +64,12 @@ public class ClientController {
 		return "client.choseDate";
 	}
 
+	/**
+	 * @param dateHandler
+	 * @param redirectAttributes
+	 * @return
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = "/booking", method = RequestMethod.POST)
 	public String choseDate(@ModelAttribute("reservation") DateHandler dateHandler,
 			RedirectAttributes redirectAttributes) throws ParseException {
@@ -67,6 +83,13 @@ public class ClientController {
 	}
 
 	/* "/period;firstDay=dd-mm-yyyy;lastDay=dd-mm-yyyy" */
+	/**
+	 * @param model
+	 * @param reservation
+	 * @param redirectAttributes
+	 * @return
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = "/getFreeRoomsInPeriod", method = RequestMethod.GET)
 	public String getFreeRoomsInPeriod(Model model, @ModelAttribute("reservation") Reservation reservation,
 			RedirectAttributes redirectAttributes) throws ParseException {
@@ -81,6 +104,16 @@ public class ClientController {
 		return "client.freeRooms";
 	}
 
+	/**
+	 * @param model
+	 * @param reservation
+	 * @param roomId
+	 * @param firstDay
+	 * @param lastDay
+	 * @param redirectAttributes
+	 * @return
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = "/pay/room={roomId}/first={firstDay}/last={lastDay}", method = RequestMethod.GET)
 	public String payForReservation(Model model, @ModelAttribute("reservation") Reservation reservation,
 			@PathVariable("roomId") int roomId, @PathVariable("firstDay") String firstDay,

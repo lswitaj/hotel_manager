@@ -31,11 +31,19 @@ public class BossController {
 	@Autowired
 	private ReservationService reservationService;
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/menu")
 	public String welcome(Model model) {
 		return "boss.menu";
 	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/displayEmployees")
 	public String list(Model model) {
 		model.addAttribute("employees", employeeRepository.getAllEmployees());
@@ -43,6 +51,10 @@ public class BossController {
 		return "boss.displayEmployees";
 	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/summary")
 	public String displaySummary(Model model) {
 		model.addAttribute("incomes", reservationService.sumUpIncomes());
@@ -51,6 +63,10 @@ public class BossController {
 		return "boss.money";
 	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public String addEmloyee(Model model) {
 		Employee newEmployee = new Employee();
@@ -59,6 +75,11 @@ public class BossController {
 		return "boss.addEmployee";
 	}
 	
+	/**
+	 * @param newEmployee
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 	public String addEmloyee(@ModelAttribute("newEmployee") @Valid Employee newEmployee, BindingResult result) {
 		employeeService.addEmployee(newEmployee);
@@ -70,6 +91,11 @@ public class BossController {
 		return "redirect:/boss/displayEmployees";
 	}
 
+	/**
+	 * @param model
+	 * @param employeeId
+	 * @return
+	 */
 	@RequestMapping(value = "/promoteEmployee/{pesel}", method = RequestMethod.GET)
 	public String updateEmloyee(Model model, @PathVariable("pesel") String employeeId) {
 		model.addAttribute("actualEmployee", employeeService.getEmployeeByPesel(employeeId));
@@ -77,6 +103,11 @@ public class BossController {
 		return "boss.promoteEmployee";
 	}
 	
+	/**
+	 * @param employee
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "/promoteEmployee/{pesel}", method = RequestMethod.POST)
 	public String updateEmloyee(@ModelAttribute("actualEmployee") @Valid Employee employee, BindingResult result) {
 		employeeService.updateEmployee(employee);
@@ -88,6 +119,9 @@ public class BossController {
 		return "redirect:/boss/displayEmployees/";
 	}
 	
+	/**
+	 * @param binder
+	 */
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 	
